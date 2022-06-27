@@ -7,7 +7,7 @@ const TotalBudget = () => {
     const { expenses, budgets } = useBudgets()
 
     const amount = expenses.reduce((total,expense) => total + expense.description.amount, 0) 
-    const max = Array.isArray(budgets) && budgets[0] ? budgets.reduce((total, budget) => total + budget.name.max, 0) : 0
+    const max =  budgets.reduce((total, budget) => total + budget.name.max, 0)
     if (max === 0) {return null}
   return (
     <Budget amount={amount} name='Total' gray max={max} hideButton/>

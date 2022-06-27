@@ -67,7 +67,10 @@ const styles = StyleSheet.create({
       },
     dropdown: {
         margin: 12,
-        padding: 10
+        padding: 10,
+        outlineColor: "#cccccc",
+        outlineStyle: "solid",
+        outlineWidth: 1,
     }
   });
   
