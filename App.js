@@ -23,7 +23,7 @@ import AddExpense from './source/components/AddExpense';
    
     <Stack.Navigator initialRouteName='Home'>
     
-        <Stack.Screen  name='Home' component={Home} />
+        <Stack.Screen  name='Budget Buddy' component={Home} />
         <Stack.Screen  name='Add Budget' component={AddBudgetModel} />
         <Stack.Screen name='Add Expense' component={AddExpense} />
         </Stack.Navigator>

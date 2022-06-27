@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
       alignItems: "center",
       backgroundColor: "#99e6ff",
       padding: 10,
-      margin: 10
+      margin: 10,
+      borderRadius: 50
     },
     countContainer: {
       alignItems: "center",

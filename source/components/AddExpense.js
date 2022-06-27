@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useRef, useState } from "react"
 import { useBudgets } from '../context/BudgetContext'
@@ -13,13 +13,12 @@ const AddExpense = ({navigation}) => {
     const [value, setValue] = useState(null);
 
     function handleSubmit(){
-        console.log('budgetid', budgetIdRef)
         addExpense({
             description: descriptionRef.current.value,
             amount: parseFloat(amountRef.current.value),
             budgetId: value
         })
-        navigation.navigate('Home')
+        navigation.navigate('Budget Buddy')
     }
 
 
@@ -30,7 +29,9 @@ const AddExpense = ({navigation}) => {
     </View>
     <TextInput  style={styles.input} ref={descriptionRef}  placeholder="Expense Description"/>
     <TextInput  style={styles.input} ref={amountRef}  placeholder="Amount"/>
-    <Dropdown data={budgets} 
+    <Dropdown 
+            style={styles.dropdown}
+            data={budgets} 
             placeholder='Select Budget'
             ref={budgetIdRef}
             labelField='name.name'
@@ -40,40 +41,10 @@ const AddExpense = ({navigation}) => {
           }}
        
     />
-     <Button title="Add Expense" variant="primary" type='submit' onPress={()=> handleSubmit()}/>
-    {/* <Modal show={show} onHide={handleClose}>
-            <Form onSubmit={handleSubmit}>
-                <Modal.Header closeButton>
-                    <Modal.Title>New Expense</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form.Group className='mb-3' controlId="description">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control ref={descriptionRef} type='text' required/>
-                    </Form.Group>
-                    <Form.Group className='mb-3' controlId="amount">
-                        <Form.Label>Amount</Form.Label>
-                        <Form.Control ref={amountRef} type='number' required min={0} step={0.01}/>
-                    </Form.Group>
-                    <Form.Group className='mb-3' controlId="budgetId">
-                        <Form.Label>Budget</Form.Label>
-                        <Form.Select 
-                        defaultValue={defaultBudgetId}
-                        ref={budgetIdRef} 
-                        >
-                        <option id={UNCATEGORIZE_BUDGET_ID}>Miscellaneous</option>
-                        {budgets.map(budget => (
-                            <option key={budget.id} value={budget.id}>{budget.name.name}</option>
-                        ))}
-                        </Form.Select>
-                       
-                    </Form.Group>
-                    <div className="d-flex justify-content-end">
-                        <Button variant="primary" type='submit'>Add</Button>
-                    </div>
-                </Modal.Body>
-            </Form>
-        </Modal> */}
+    <TouchableOpacity style={styles.button} onPress={()=> handleSubmit()}>
+            <Text>Add Expense</Text>
+    </TouchableOpacity>
+
     </>
   )
 }
@@ -81,11 +52,22 @@ const AddExpense = ({navigation}) => {
 export default AddExpense
 
 const styles = StyleSheet.create({
+    button: {
+        alignItems: "center",
+        backgroundColor: "#99e6ff",
+        padding: 10,
+        margin: 10,
+        borderRadius: 50
+      },
     input: {
         height: 40,
         margin: 12,
         borderWidth: 1,
         padding: 10,
       },
+    dropdown: {
+        margin: 12,
+        padding: 10
+    }
   });
   
