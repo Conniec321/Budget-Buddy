@@ -59,7 +59,7 @@ const Budget = ({navigation, name, max,id, amount, gray, onViewExpensesClick, hi
           : ''}
           <View>
           {viewExpense && viewExpenseModelBudgetId === id ? 
-            expenses.map(expense => (
+            budgetExpenses.map(expense => (
               <View style={styles.fixToText}>
                 <Text style={styles.expense}>{expense.description.description}</Text>
                 <Text style={styles.price}>${expense.description.amount}</Text>
