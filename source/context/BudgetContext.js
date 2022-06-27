@@ -22,7 +22,6 @@ const BudgetContext = React.createContext(
 
 
         function getBudgetExpenses(budgetId) {
-           
             return expenses.filter(expense => expense.description.budgetId === budgetId)
         }
     
@@ -33,7 +32,6 @@ const BudgetContext = React.createContext(
         }
     
         function addBudget(name, max) {
-            console.log(budgets, 'bud')
             setBudgets(prevBudgets => {
                 if(prevBudgets.find(budget => budget.name.name === name)){
                     return prevBudgets
@@ -43,16 +41,7 @@ const BudgetContext = React.createContext(
         }
     
         function deleteBudget({id}) {
-            // setExpenses(prevExpenses => {
-            //     return prevExpenses.map(expense => {
-            //         if (expense.budgetId !== id) return expense
-            //         const description = {
-            //             description:expense.description.description,
-            //             amount: expense.description.amount,
-            //             budgetId:UNCATEGORIZE_BUDGET_ID    
-            //         }
-            //         return {...expense, description}
-            //     })
+
                 setExpenses(prevExpenses => {
                     return prevExpenses.filter(expense => 
                         expense.description.budgetId !== id) 
@@ -61,6 +50,7 @@ const BudgetContext = React.createContext(
             setBudgets(prevBudgets => {
                 return prevBudgets.filter(budget => budget.id !== id)
             })
+            console.log('budgets',budgets)
         }
     
         function deleteExpense(id) {

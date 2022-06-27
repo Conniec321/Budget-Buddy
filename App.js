@@ -21,7 +21,16 @@ import AddExpense from './source/components/AddExpense';
 
   <NavigationContainer>
    
-    <Stack.Navigator initialRouteName='Home'>
+    <Stack.Navigator initialRouteName='Home' screenOptions={{
+        headerStyle: {
+          // backgroundColor: "#99e6ff",
+        },
+        // headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          justifyContent: 'center'
+        },
+      }}>
     
         <Stack.Screen  name='Budget Buddy' component={Home} />
         <Stack.Screen  name='Add Budget' component={AddBudgetModel} />

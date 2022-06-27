@@ -11,15 +11,15 @@ export default function Home({navigation}) {
   const [showAddExpenseModel, setShowAddExpenseModel] = useState(false)
   const [viewExpenseModelBudgetId, setViewExpenseModelBudgetId] = useState()
   const [addExpenseModelBudgetId, setAddExpenseModelBudgetId] = useState()
-  console.log(expenses, 'budget')
+
   return (
     <>
     <View style={styles.fixToText}>
       <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('Add Budget') }>
-        <Text>Add Budget</Text>
+        <Text>ADD BUDGET</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Add Expense')} >
-        <Text>Add Expense</Text>
+        <Text>ADD EXPENSE</Text>
       </TouchableOpacity>
       </View>
       <View>
@@ -52,9 +52,9 @@ const styles = StyleSheet.create({
     button: {
       alignItems: "center",
       backgroundColor: "#99e6ff",
-      padding: 10,
-      margin: 10,
-      borderRadius: 50
+      padding: 15,
+      margin: 20,
+      borderRadius: 90
     },
     countContainer: {
       alignItems: "center",
@@ -65,6 +65,9 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: "center",
     },
+    text: {
+      fontFamily: 'Avenir'
+    }
   });
   
 

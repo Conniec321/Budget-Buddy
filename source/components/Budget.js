@@ -10,11 +10,18 @@ import { ScreenStackHeaderRightView } from 'react-native-screens'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 
 const Budget = ({navigation, name, max,id, amount, gray, onViewExpensesClick, hideButton, onAddExpensesClick}) => {
-  const { expenses, budgets, getBudgetExpenses, deleteExpense } = useBudgets()
+  const { expenses, budgets, getBudgetExpenses, deleteExpense, deleteBudget } = useBudgets()
   const [viewExpense, setViewExpense] = useState(false)
   const [viewExpenseModelBudgetId, setViewExpenseModelBudgetId] = useState()
   const budgetExpenses = getBudgetExpenses(id)
-  console.log(budgetExpenses, 'expenses')
+ 
+  function progressBarColor(){
+    const ratio = amount / max
+    if (ratio < 0.5) return 'blue'
+    if (ratio < 0.75) return '#ffd11a'
+    return 'red'
+}
+
 
   function openExpenses(budgetId) {
     setViewExpense(true)
@@ -33,12 +40,9 @@ const Budget = ({navigation, name, max,id, amount, gray, onViewExpensesClick, hi
           <View>
             <Text style={styles.innerText}>${(amount)} / ${max}</Text>
           </View>
-          <Progress.Bar style={styles.progressBar} progress={amount / max} width={null} />
+          <Progress.Bar style={styles.progressBar} progress={amount / max} width={null} color={progressBarColor()}/>
           { name !== 'Total' && !viewExpense?  
           <View>
-          {/* <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Add Expense')} >
-            <Text>Add Expense</Text>
-          </TouchableOpacity> */}
                
           <TouchableOpacity style={styles.button} onPress={() => openExpenses(id)} >
             <Text >View Expenses</Text>
@@ -49,7 +53,7 @@ const Budget = ({navigation, name, max,id, amount, gray, onViewExpensesClick, hi
             <View  style={styles.fixToText}>
               <Text style={styles.expenseHeader}> {name} Expenses</Text>
                 <TouchableOpacity style={styles.button} onPress={() => setViewExpense(false)} >
-                  <Text>Hide Expense</Text>
+                  <Text>Hide Expenses</Text>
                 </TouchableOpacity>
             </View>
           : ''}
@@ -66,6 +70,11 @@ const Budget = ({navigation, name, max,id, amount, gray, onViewExpensesClick, hi
             ))
           :''
           }
+          {/* {name !== 'Total' ?  
+          <TouchableOpacity style={styles.button} onPress={() => deleteBudget(id)} >
+          <Text >Delete Budget</Text>
+        </TouchableOpacity>
+          : ''} */}
           </View>
         </Card>
     </View>

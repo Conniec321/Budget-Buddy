@@ -8,7 +8,6 @@ import { Dropdown } from 'react-native-element-dropdown';
 const AddExpense = ({navigation}) => {
     const descriptionRef = useRef()
     const amountRef = useRef()
-    const budgetIdRef = useRef()
     const { addExpense, budgets } = useBudgets()
     const [value, setValue] = useState(null);
 
@@ -23,17 +22,13 @@ const AddExpense = ({navigation}) => {
 
 
   return (
-    <>
     <View>
-      <Text> Expense Name </Text>
-    </View>
     <TextInput  style={styles.input} ref={descriptionRef}  placeholder="Expense Description"/>
     <TextInput  style={styles.input} ref={amountRef}  placeholder="Amount"/>
     <Dropdown 
             style={styles.dropdown}
             data={budgets} 
             placeholder='Select Budget'
-            ref={budgetIdRef}
             labelField='name.name'
             valueField='id'
         onChange={item => {
@@ -41,11 +36,11 @@ const AddExpense = ({navigation}) => {
           }}
        
     />
-    <TouchableOpacity style={styles.button} onPress={()=> handleSubmit()}>
+    <TouchableOpacity style={styles.button} onPress={()=> handleSubmit()} disabled={value === null || descriptionRef === null || Number.isInteger(parseFloat(amountRef))}>
             <Text>Add Expense</Text>
     </TouchableOpacity>
 
-    </>
+    </View>
   )
 }
 
