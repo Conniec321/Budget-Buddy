@@ -15,22 +15,25 @@ const BudgetContext = React.createContext(
     
     export const BudgetProvider = ({ children }) => {
        
-        const [budgets, setBudgets] = useAsyncStorage('budgets',[])
-        const [expenses, setExpenses] = useAsyncStorage('expenses',[])
-    
+        const [budgets, setBudgets] =  useState([])
+        const [expenses, setExpenses] =  useState([])
+        
+
+
+
         function getBudgetExpenses(budgetId) {
-            
+           
             return expenses.filter(expense => expense.description.budgetId === budgetId)
         }
     
         function addExpense( description, amount, budgetId) {
-            console.log('expenses', expenses)
             setExpenses(prevExpenses => {
                 return [...prevExpenses, {id: uuidV4(),  description, amount, budgetId}]
             })
         }
     
         function addBudget(name, max) {
+            console.log(budgets, 'bud')
             setBudgets(prevBudgets => {
                 if(prevBudgets.find(budget => budget.name.name === name)){
                     return prevBudgets

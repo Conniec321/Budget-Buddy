@@ -6,30 +6,36 @@ import AddBudgetModel from './source/components/AddBudgetModel';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './source/components/Home';
-
+import React, { Component } from 'react'
 import { BudgetProvider } from './source/context/BudgetContext';
+import AddExpense from './source/components/AddExpense';
 
 
-export default function App() {
+// export default function App() {
 
   const Stack = createNativeStackNavigator()
+  export default class App extends Component {
+    render(){
   return (
+    
 
-    // <BudgetProvider>
   <NavigationContainer>
    
     <Stack.Navigator initialRouteName='Home'>
-
+    
         <Stack.Screen  name='Home' component={Home} />
         <Stack.Screen  name='Add Budget' component={AddBudgetModel} />
+        <Stack.Screen name='Add Expense' component={AddExpense} />
         </Stack.Navigator>
     
     </NavigationContainer>
-    // </BudgetProvider>
+
+  
 
  
      
-  );
+  )
+    }
 }
 
 const styles = StyleSheet.create({
